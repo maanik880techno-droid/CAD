@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Technical Drawing | CAD Studio Pro</title>
+    <meta name="description" content="AutoCAD technical drawing with Front, Side, Top views. DWG, DXF & PDF.">
+    <meta property="og:title" content="Keyboard Technical Drawing — CAD Studio Pro">
+    <meta property="og:description" content="Full engineering drawing with orthographic views. Contact for pricing.">
+    <meta property="og:image" content="keyboard-preview.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="product.css">
+</head>
+
+<body>
+
+    <!-- Cursor -->
+    <div id="cursor"></div>
+    <div id="cursorFollower"></div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <span class="top-bar-text">✦ Professional AutoCAD Drawings ✦</span>
+        <div class="top-bar-right">
+            <a href="https://wa.me/917973862363" target="_blank" class="topbar-link whatsapp-link"><i
+                    class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            <a href="tel:+917973862363" class="topbar-link phone-link"><i class="fa-solid fa-phone"></i> +91 79738
+                62363</a>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-logo">
+            <a href="index.html"
+                style="display:flex; align-items:center; gap:0.6rem; text-decoration:none; color:inherit">
+                <i class="fa-solid fa-compass-drafting"></i>
+                <span>CAD Studio<em>PRO</em></span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="index.html#featured" class="nav-link">Featured</a></li>
+            <li><a href="index.html#catalog" class="nav-link">Shop</a></li>
+            <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="tel:+917973862363" class="btn btn-blue nav-cta">
+                <i class="fa-solid fa-phone"></i> Call Now
+            </a>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <button class="mobile-close" id="mobileClose"><i class="fa-solid fa-xmark"></i></button>
+        <ul>
+            <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+            <li><a href="index.html#catalog" class="mobile-nav-link">Shop</a></li>
+            <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <a href="index.html#catalog">Shop</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>Keyboard Technical Drawing</span>
+    </div>
+
+    <!-- Hero Banner -->
+    <div class="product-hero-banner reveal-up">
+        <div class="section-bg-grid"></div>
+        <h1>Standard Computer Keyboard</h1>
+        <p>Technical Drawing — Front · Side · Top Views</p>
+    </div>
+
+    <!-- Product Page -->
+    <main class="product-page">
+
+        <!-- LEFT: Preview -->
+        <div class="product-preview-panel reveal-left">
+            <div class="preview-image-box">
+                <div class="scan-line"></div>
+                <div class="frame-corner tl"></div>
+                <div class="frame-corner tr"></div>
+                <div class="frame-corner bl"></div>
+                <div class="frame-corner br"></div>
+                <img src="keyboard-preview.jpg" alt="Keyboard CAD Drawing"
+                    onerror="this.style.display='none'; document.getElementById('prevFallback').style.display='flex'">
+                <div id="prevFallback" class="cad-preview-fallback">
+                    <i class="fa-solid fa-keyboard fa-5x" style="color:var(--blue); opacity:0.5"></i>
+                    <p style="color:var(--gray)">Technical Drawing Preview</p>
+                </div>
+                <div class="preview-watermark-overlay">PREVIEW ONLY — CAD STUDIO PRO</div>
+                <div class="sample-ribbon-banner">SAMPLE</div>
+            </div>
+
+            <!-- View strip -->
+            <div class="view-strip">
+                <div class="view-thumb active">
+                    <i class="fa-solid fa-square"></i>
+                    <span>Front View</span>
+                </div>
+                <div class="view-thumb">
+                    <i class="fa-solid fa-square-caret-right"></i>
+                    <span>Side View</span>
+                </div>
+                <div class="view-thumb">
+                    <i class="fa-solid fa-table-cells"></i>
+                    <span>Top View</span>
+                </div>
+            </div>
+
+            <!-- Spec Table -->
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Technical Specifications</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Overall Length</td>
+                        <td>36 cm</td>
+                    </tr>
+                    <tr>
+                        <td>Overall Width</td>
+                        <td>34.6 cm</td>
+                    </tr>
+                    <tr>
+                        <td>Views Included</td>
+                        <td>Front · Side · Top</td>
+                    </tr>
+                    <tr>
+                        <td>File Formats</td>
+                        <td>DWG · DXF · PDF</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- RIGHT: Details -->
+        <div class="product-details-panel reveal-right">
+            <div class="prod-badge-row">
+                <span class="badge-pill gold">⭐ Sample Project</span>
+                <span class="badge-pill blue">Product Design</span>
+                <span class="badge-pill purple">Engineering Drawing</span>
+            </div>
+
+            <h1 class="product-title-lg">Standard Computer Keyboard — Technical Drawing</h1>
+            <p class="product-subtitle-sm">Full Engineering Drawing with Front, Side &amp; Top Views</p>
+
+            <p class="product-desc">
+                A complete AutoCAD technical drawing of a Standard Computer Keyboard showing all three orthographic
+                views — Front, Side, and Top. Includes precise dimensions for all keys and body panels. Ideal for
+                product design reference, engineering students, and CAD practice.
+            </p>
+
+            <div class="tag-row">
+                <span>#Keyboard</span>
+                <span>#ProductDrawing</span>
+                <span>#Orthographic</span>
+                <span>#Engineering</span>
+                <span>#AutoCAD</span>
+                <span>#ChandigarhUniversity</span>
+            </div>
+
+            <div class="format-row" style="margin-bottom:2rem">
+                <span class="fmt-pill">📐 DWG</span>
+                <span class="fmt-pill">📄 DXF</span>
+                <span class="fmt-pill">🖨️ PDF</span>
+                <span class="fmt-pill">3 Views</span>
+            </div>
+
+            <div class="price-contact-box">
+                <span class="contact-price-tag">Contact for Price</span>
+                <span class="price-note">Instant delivery after payment</span>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="cta-stack">
+                <a href="https://wa.me/917973862363?text=Hi!%20I'm%20interested%20in%20your%20AutoCAD%20Keyboard%20Drawing.%20Please%20share%20the%20price%20and%20more%20details."
+                    target="_blank" class="btn btn-green btn-shimmer cta-full">
+                    <i class="fa-brands fa-whatsapp"></i> Contact on WhatsApp
+                </a>
+                <a href="tel:+917973862363" class="btn btn-blue btn-glow btn-shimmer cta-full">
+                    <i class="fa-solid fa-phone"></i> Call Now
+                </a>
+                <button onclick="openModal()" class="btn btn-outline btn-shimmer cta-full">
+                    <i class="fa-solid fa-file-arrow-down"></i> Request Full File
+                </button>
+            </div>
+
+            <!-- Why Buy Mini -->
+            <div class="why-buy-mini-list glass-card">
+                <div class="why-mini-item"><i class="fa-solid fa-circle-check"></i> Made by Engineering Student at
+                    Chandigarh University</div>
+                <div class="why-mini-item"><i class="fa-solid fa-circle-check"></i> Accurate dimensions and clean CAD
+                    layers</div>
+                <div class="why-mini-item"><i class="fa-solid fa-circle-check"></i> Instant delivery after payment</div>
+                <div class="why-mini-item"><i class="fa-solid fa-circle-check"></i> Custom AutoCAD projects available on
+                    request</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/917973862363?text=Hi!%20I%20found%20your%20AutoCAD%20projects%20and%20I'm%20interested."
+        class="wa-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile Sticky Bar -->
+    <div class="sticky-bar">
+        <a href="https://wa.me/917973862363?text=Hi!%20I'm%20interested%20in%20the%20Keyboard%20Drawing."
+            target="_blank" class="sticky-wa">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="tel:+917973862363" class="sticky-call">
+            <i class="fa-solid fa-phone"></i> Call Now
+        </a>
+    </div>
+
+    <!-- Request Modal -->
+    <div class="modal-bg" id="requestModal">
+        <div class="modal-box glass-card">
+            <div class="modal-hdr">
+                <h3>⬇️ Request Full File</h3>
+                <button class="icon-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--gray); margin-bottom:1.5rem; font-size:0.9rem">Fill in your details — we'll send you
+                the full DWG/DXF file.</p>
+            <form onsubmit="handleRequestForm(event)">
+                <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+                <div class="form-group"><input type="email" placeholder="Your Email" required></div>
+                <div class="form-group"><input type="text" value="Keyboard Technical Drawing" readonly
+                        style="opacity:0.5"></div>
+                <div class="form-group"><textarea rows="3" placeholder="Any specific requirements?"></textarea></div>
+                <button type="submit" class="btn btn-green btn-shimmer" style="width:100%">
+                    <i class="fa-brands fa-whatsapp"></i> &nbsp;Send Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Cursor
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursorFollower');
+        let fx = 0, fy = 0;
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+            fx += (e.clientX - fx) * 0.12; fy += (e.clientY - fy) * 0.12;
+            follower.style.left = fx + 'px'; follower.style.top = fy + 'px';
+        });
+        document.querySelectorAll('a,button,.view-thumb').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+        });
+
+        // Hamburger
+        const ham = document.getElementById('hamburger');
+        const mob = document.getElementById('mobileMenuOverlay');
+        const mobClose = document.getElementById('mobileClose');
+        if (ham) ham.addEventListener('click', () => mob.classList.add('open'));
+        if (mobClose) mobClose.addEventListener('click', () => mob.classList.remove('open'));
+        mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+        // View strip
+        document.querySelectorAll('.view-thumb').forEach(t => {
+            t.addEventListener('click', () => {
+                document.querySelectorAll('.view-thumb').forEach(x => x.classList.remove('active'));
+                t.classList.add('active');
+            });
+        });
+
+        // Modal
+        function openModal() { document.getElementById('requestModal').classList.add('active'); }
+        function closeModal() { document.getElementById('requestModal').classList.remove('active'); }
+        function handleRequestForm(e) {
+            e.preventDefault(); closeModal();
+            showToast('✅ Request sent! We\'ll contact you on WhatsApp shortly.');
+        }
+
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        reveals.forEach(r => obs.observe(r));
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg; t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 4000);
+        }
+    </script>
+</body>
+
+</html>
