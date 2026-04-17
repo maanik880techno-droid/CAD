@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | CAD Studio Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --black: #0A0A0F;
+            --navy: #0D1117;
+            --surface: #111827;
+            --blue: #00D4FF;
+            --gold: #FFD700;
+            --white: #FFFFFF;
+            --gray: #8892A4;
+            --green: #25D366;
+            --red: #ef4444;
+            --border: rgba(255, 255, 255, 0.08);
+            --card: rgba(17, 24, 39, 0.9);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* ===== LOGIN SCREEN ===== */
+        #loginScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-box {
+            background: var(--card);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 400px;
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.08);
+            text-align: center;
+        }
+
+        .login-box i {
+            font-size: 3rem;
+            color: var(--blue);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .login-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-box p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .login-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.9rem 1.2rem;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            transition: border-color 0.3s;
+        }
+
+        .login-input:focus {
+            border-color: var(--blue);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--blue);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .login-btn:hover {
+            box-shadow: 0 6px 30px rgba(0, 212, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .login-error {
+            color: var(--red);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* ===== ADMIN DASHBOARD ===== */
+        #dashboard {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .admin-nav {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+        }
+
+        .admin-logo i {
+            color: var(--blue);
+        }
+
+        .admin-badge {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid var(--red);
+            color: var(--red);
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--gray);
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .admin-main {
+            padding: 3rem 5%;
+        }
+
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-card .icon {
+            font-size: 2rem;
+        }
+
+        .stat-card .info .num {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-card .info .lbl {
+            color: var(--gray);
+            font-size: 0.82rem;
+        }
+
+        .stat-card.blue .icon {
+            color: var(--blue);
+        }
+
+        .stat-card.gold .icon {
+            color: var(--gold);
+        }
+
+        .stat-card.green .icon {
+            color: var(--green);
+        }
+
+        .stat-card.red .icon {
+            color: var(--red);
+        }
+
+        /* Orders table */
+        .section-ttl {
+            font-size: 1.4rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-ttl i {
+            color: var(--blue);
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+
+        .search-admin {
+            flex: 1;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.65rem 1rem;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        .search-admin:focus {
+            border-color: var(--blue);
+        }
+
+        .clear-btn {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--red);
+            color: var(--red);
+            padding: 0.65rem 1.4rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .clear-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .export-btn {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--blue);
+            color: var(--blue);
+            padding: 0.65rem 1.4rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .export-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            background: rgba(0, 212, 255, 0.07);
+            padding: 0.9rem 1rem;
+            text-align: left;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--blue);
+            border-bottom: 1px solid var(--border);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: background 0.2s;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        tbody td {
+            padding: 1rem;
+            font-size: 0.88rem;
+            vertical-align: middle;
+        }
+
+        .badge-paid {
+            background: rgba(37, 211, 102, 0.15);
+            color: var(--green);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .badge-coupon {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .badge-none {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+            color: var(--gray);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .table-wrapper {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .stats-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .toolbar {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== LOGIN SCREEN ===== -->
+    <div id="loginScreen">
+        <div class="login-box">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h2>Admin Access</h2>
+            <p>CAD Studio Pro · Secure Dashboard</p>
+            <input type="password" id="adminPass" class="login-input" placeholder="Enter admin password"
+                onkeydown="if(event.key==='Enter') adminLogin()">
+            <button class="login-btn" onclick="adminLogin()">
+                <i class="fa-solid fa-lock-open"></i> &nbsp;Unlock Dashboard
+            </button>
+            <p class="login-error" id="loginError">❌ Incorrect password. Access denied.</p>
+            <br>
+            <a href="index.html" style="color:var(--gray); font-size:0.82rem">← Back to Store</a>
+        </div>
+    </div>
+
+    <!-- ===== DASHBOARD ===== -->
+    <div id="dashboard">
+        <nav class="admin-nav">
+            <div class="admin-logo">
+                <i class="fa-solid fa-compass-drafting"></i>
+                CAD Studio PRO
+                <span class="admin-badge">ADMIN</span>
+            </div>
+            <button class="logout-btn" onclick="adminLogout()">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </nav>
+
+        <div class="admin-main">
+            <!-- Stats -->
+            <div class="stats-row">
+                <div class="stat-card blue">
+                    <div class="icon"><i class="fa-solid fa-receipt"></i></div>
+                    <div class="info">
+                        <div class="num" id="totalOrders">0</div>
+                        <div class="lbl">Total Orders</div>
+                    </div>
+                </div>
+                <div class="stat-card gold">
+                    <div class="icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                    <div class="info">
+                        <div class="num" id="totalRevenue">₹0</div>
+                        <div class="lbl">Total Revenue</div>
+                    </div>
+                </div>
+                <div class="stat-card green">
+                    <div class="icon"><i class="fa-solid fa-tag"></i></div>
+                    <div class="info">
+                        <div class="num" id="couponUsed">0</div>
+                        <div class="lbl">Coupons Used</div>
+                    </div>
+                </div>
+                <div class="stat-card red">
+                    <div class="icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="info">
+                        <div class="num" id="uniqueBuyers">0</div>
+                        <div class="lbl">Unique Buyers</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="section-ttl"><i class="fa-solid fa-table-list"></i> Customer Orders</div>
+            <div class="toolbar">
+                <input type="text" class="search-admin" id="orderSearch" placeholder="Search by name, phone, project…"
+                    oninput="filterOrders()">
+                <button class="export-btn" onclick="exportCSV()">
+                    <i class="fa-solid fa-file-csv"></i> Export CSV
+                </button>
+                <button class="clear-btn" onclick="clearOrders()">
+                    <i class="fa-solid fa-trash"></i> Clear All
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date & Time</th>
+                            <th>Customer Name</th>
+                            <th>Phone / WhatsApp</th>
+                            <th>Project</th>
+                            <th>Amount Paid</th>
+                            <th>Coupon</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody"></tbody>
+                </table>
+                <div class="empty-state" id="emptyState" style="display:none">
+                    <i class="fa-solid fa-box-open"></i>
+                    <p>No orders yet. They will appear here after customers complete payment.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_PASS = 'Maanik@123';
+        let allOrders = [];
+
+        // ===== AUTH =====
+        function adminLogin() {
+            const pass = document.getElementById('adminPass').value;
+            const err = document.getElementById('loginError');
+            if (pass === ADMIN_PASS) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                loadOrders();
+            } else {
+                err.style.display = 'block';
+                document.getElementById('adminPass').style.borderColor = '#ef4444';
+                setTimeout(() => {
+                    err.style.display = 'none';
+                    document.getElementById('adminPass').style.borderColor = '';
+                }, 3000);
+            }
+        }
+        function adminLogout() {
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('adminPass').value = '';
+        }
+
+        // ===== LOAD ORDERS =====
+        function loadOrders() {
+            allOrders = JSON.parse(localStorage.getItem('cad_orders') || '[]');
+            renderOrders(allOrders);
+            updateStats(allOrders);
+        }
+
+        function updateStats(orders) {
+            document.getElementById('totalOrders').innerText = orders.length;
+            const revenue = orders.reduce((s, o) => s + (o.amountPaid || 0), 0);
+            document.getElementById('totalRevenue').innerText = '₹' + revenue.toFixed(0);
+            document.getElementById('couponUsed').innerText = orders.filter(o => o.coupon).length;
+            const unique = new Set(orders.map(o => o.phone)).size;
+            document.getElementById('uniqueBuyers').innerText = unique;
+        }
+
+        function renderOrders(orders) {
+            const tbody = document.getElementById('ordersTableBody');
+            const empty = document.getElementById('emptyState');
+            tbody.innerHTML = '';
+
+            if (orders.length === 0) {
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+
+            orders.slice().reverse().forEach((o, i) => {
+                const tr = document.createElement('tr');
+                const couponHtml = o.coupon
+                    ? `<span class="badge-coupon">${o.coupon}</span>`
+                    : `<span class="badge-none">—</span>`;
+                tr.innerHTML = `
+                <td style="color:var(--gray)">${orders.length - i}</td>
+                <td style="color:var(--gray); font-size:0.8rem">${o.timestamp || '—'}</td>
+                <td><strong>${o.name || '—'}</strong></td>
+                <td style="color:var(--blue)">${o.phone || '—'}</td>
+                <td>${o.project || '—'}</td>
+                <td style="color:var(--gold); font-weight:700">₹${(o.amountPaid || 0).toFixed(2)}</td>
+                <td>${couponHtml}</td>
+                <td><span class="badge-paid">✓ Paid</span></td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterOrders() {
+            const q = document.getElementById('orderSearch').value.toLowerCase();
+            const filtered = allOrders.filter(o =>
+                (o.name || '').toLowerCase().includes(q) ||
+                (o.phone || '').toLowerCase().includes(q) ||
+                (o.project || '').toLowerCase().includes(q)
+            );
+            renderOrders(filtered);
+        }
+
+        function clearOrders() {
+            if (!confirm('Are you sure? This will permanently delete all order records.')) return;
+            localStorage.removeItem('cad_orders');
+            allOrders = [];
+            renderOrders([]);
+            updateStats([]);
+        }
+
+        function exportCSV() {
+            if (allOrders.length === 0) { alert('No orders to export.'); return; }
+            const headers = ['#', 'Date', 'Name', 'Phone', 'Project', 'Amount', 'Coupon', 'Status'];
+            const rows = allOrders.map((o, i) => [
+                i + 1, o.timestamp, o.name, o.phone, o.project, o.amountPaid, o.coupon || '', 'Paid'
+            ]);
+            const csv = [headers, ...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+            const a = document.createElement('a');
+            a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+            a.download = 'cad_studio_orders.csv';
+            a.click();
+        }
+    </script>
+</body>
+
+</html>
