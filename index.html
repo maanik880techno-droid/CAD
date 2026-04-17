@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAD Studio Pro | Premium AutoCAD Drawings</title>
+    <meta name="description"
+        content="Professional AutoCAD technical drawings. Engineering grade DWG, DXF & PDF formats. Instant delivery.">
+    <meta property="og:title" content="CAD Studio Pro — Premium AutoCAD Drawings">
+    <meta property="og:description"
+        content="Engineering-grade technical drawings. Instant delivery. Contact for pricing.">
+
+    <!-- Google Fonts: Inter + Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="loadingScreen">
+        <div class="loader-content">
+            <svg class="loader-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <rect class="draw-line" x="20" y="20" width="260" height="160" rx="2" />
+                <line class="draw-line" x1="20" y1="60" x2="280" y2="60" />
+                <line class="draw-line" x1="140" y1="60" x2="140" y2="180" />
+                <rect class="draw-line" x="40" y="75" width="80" height="50" rx="1" />
+                <rect class="draw-line" x="155" y="75" width="110" height="50" rx="1" />
+                <line class="draw-line" x1="50" y1="145" x2="120" y2="145" />
+                <line class="draw-line" x1="155" y1="145" x2="265" y2="145" />
+                <text class="draw-text" x="60" y="170" font-size="9">FRONT</text>
+                <text class="draw-text" x="185" y="170" font-size="9">SIDE</text>
+            </svg>
+            <p class="loader-label">CAD Studio Pro</p>
+        </div>
+    </div>
+
+    <!-- ===== CUSTOM CURSOR ===== -->
+    <div id="cursor"></div>
+    <div id="cursorFollower"></div>
+
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar">
+        <span class="top-bar-text">✦ Professional AutoCAD Drawings — Engineering Grade · Chandigarh University</span>
+        <div class="top-bar-right">
+            <a href="https://wa.me/917973862363" target="_blank" class="topbar-link whatsapp-link">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="tel:+917973862363" class="topbar-link phone-link">
+                <i class="fa-solid fa-phone"></i> +91 79738 62363
+            </a>
+        </div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo">
+            <i class="fa-solid fa-compass-drafting"></i>
+            <span>CAD Studio<em>PRO</em></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#featured" class="nav-link">Featured</a></li>
+            <li><a href="#catalog" class="nav-link">Shop</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="admin.html" class="nav-icon-btn" title="Admin Dashboard" style="text-decoration:none;">
+                <i class="fa-solid fa-lock"></i>
+            </a>
+            <button class="nav-icon-btn" id="wishlistBtn" title="Wishlist">
+                <i class="fa-regular fa-heart"></i>
+                <span class="nav-badge" id="wishlistCount">0</span>
+            </button>
+            <button class="nav-icon-btn" id="cartBtn" title="Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="nav-badge" id="cartCount">0</span>
+            </button>
+            <a href="tel:+917973862363" class="btn btn-blue nav-cta">
+                <i class="fa-solid fa-phone"></i> Call Now
+            </a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <button class="mobile-close" id="mobileClose"><i class="fa-solid fa-xmark"></i></button>
+        <ul>
+            <li><a href="#home" class="mobile-nav-link">Home</a></li>
+            <li><a href="#featured" class="mobile-nav-link">Featured</a></li>
+            <li><a href="#catalog" class="mobile-nav-link">Shop</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            <li><a href="#faq" class="mobile-nav-link">FAQ</a></li>
+        </ul>
+        <div class="mobile-contact">
+            <a href="https://wa.me/917973862363" target="_blank" class="btn btn-green">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="tel:+917973862363" class="btn btn-blue">
+                <i class="fa-solid fa-phone"></i> Call Now
+            </a>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section id="home" class="hero">
+        <canvas id="threeCanvas"></canvas>
+        <div class="hero-grid-overlay"></div>
+
+        <div class="hero-content reveal-up">
+            <div class="hero-eyebrow">
+                <span class="eyebrow-dot"></span>
+                Engineering · Precision · Excellence
+            </div>
+            <h1 class="hero-title">
+                <span class="word">Engineering</span><br>
+                <span class="word gold-text">Precision.</span><br>
+                <span class="word">Digital Excellence.</span>
+            </h1>
+            <p class="hero-subtitle">Premium AutoCAD Technical Drawings — Ready to Download.</p>
+            <div class="hero-ctas">
+                <a href="#catalog" class="btn btn-blue btn-glow">
+                    <i class="fa-solid fa-layer-group"></i> Browse Projects
+                </a>
+                <a href="#featured" class="btn btn-outline">
+                    <i class="fa-solid fa-star"></i> View Sample
+                </a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-arrow">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATS BAR ===== -->
+    <div class="stats-bar">
+        <div class="stat-item reveal-up">
+            <span class="stat-icon">✏️</span>
+            <span class="stat-value" data-target="50">0</span>
+            <span class="stat-plus">+</span>
+            <span class="stat-label">Projects</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item reveal-up" style="animation-delay:0.1s">
+            <span class="stat-icon">⭐</span>
+            <span class="stat-value" data-target="100">0</span>
+            <span class="stat-percent">%</span>
+            <span class="stat-label">Original</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item reveal-up" style="animation-delay:0.2s">
+            <span class="stat-icon">📐</span>
+            <span class="stat-label" style="font-size:1rem; font-weight:600">CAD Certified</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item reveal-up" style="animation-delay:0.3s">
+            <span class="stat-icon">⚡</span>
+            <span class="stat-label" style="font-size:1rem; font-weight:600">Instant Delivery</span>
+        </div>
+    </div>
+
+    <!-- ===== FEATURED SAMPLE ===== -->
+    <section id="featured" class="featured-section">
+        <div class="section-bg-grid"></div>
+        <div class="featured-inner">
+            <div class="featured-preview-col reveal-left">
+                <div class="featured-frame">
+                    <div class="frame-corner tl"></div>
+                    <div class="frame-corner tr"></div>
+                    <div class="frame-corner bl"></div>
+                    <div class="frame-corner br"></div>
+                    <div class="scan-line"></div>
+                    <div class="glow-behind"></div>
+                    <img src="keyboard-preview.jpg" alt="Keyboard CAD Drawing"
+                        onerror="this.style.display='none'; document.getElementById('featFallback').style.display='flex'">
+                    <div id="featFallback" class="feat-fallback">
+                        <i class="fa-solid fa-keyboard fa-5x"></i>
+                        <p>Technical Drawing Preview</p>
+                    </div>
+                    <div class="preview-watermark">PREVIEW ONLY — CAD STUDIO PRO</div>
+                    <div class="feat-badge-shimmer">⭐ Featured Project</div>
+                </div>
+            </div>
+
+            <div class="featured-detail-col reveal-right">
+                <span class="cat-pill pulse-glow">Product Design · Engineering</span>
+                <h2 class="section-title">Standard Computer<br>Keyboard Drawing</h2>
+                <p class="feat-desc">A complete AutoCAD technical drawing of a Standard Computer Keyboard — all three
+                    orthographic views (Front, Side, Top) with precise dimensions. Ideal for product design reference,
+                    engineering students, and CAD practice.</p>
+
+                <div class="feat-specs">
+                    <div class="spec-row"><i class="fa-solid fa-ruler" style="color:var(--blue)"></i> 36 cm × 34.6 cm
+                    </div>
+                    <div class="spec-row"><i class="fa-solid fa-eye" style="color:var(--blue)"></i> 3 Orthographic Views
+                    </div>
+                </div>
+
+                <div class="format-row">
+                    <span class="fmt-pill">📐 DWG</span>
+                    <span class="fmt-pill">📄 DXF</span>
+                    <span class="fmt-pill">🖨️ PDF</span>
+                    <span class="fmt-pill">3 Views</span>
+                </div>
+
+                <div class="feat-ctas">
+                    <a href="keyboard-drawing.html" class="btn btn-blue btn-glow btn-shimmer">
+                        <i class="fa-solid fa-eye"></i> View Details
+                    </a>
+                    <a href="https://wa.me/917973862363?text=Hi!%20I'm%20interested%20in%20your%20Keyboard%20Drawing%20AutoCAD%20project."
+                        target="_blank" class="btn btn-green btn-shimmer">
+                        <i class="fa-brands fa-whatsapp"></i> Contact to Buy
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Buy Section -->
+        <div class="why-buy reveal-up">
+            <h3 class="why-title">Why Buy From Me?</h3>
+            <div class="why-grid">
+                <div class="why-card"><span class="why-check">✅</span> Made by Engineering Student at Chandigarh
+                    University</div>
+                <div class="why-card"><span class="why-check">✅</span> Accurate dimensions and clean layers</div>
+                <div class="why-card"><span class="why-check">✅</span> Instant delivery after payment</div>
+                <div class="why-card"><span class="why-check">✅</span> Custom AutoCAD projects available on request
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SHOP ===== -->
+    <section id="catalog" class="shop-section">
+        <div class="shop-banner">
+            <div class="section-bg-grid"></div>
+            <h2 class="shop-title reveal-up" id="shopTitle">Our Projects</h2>
+            <p class="shop-sub reveal-up">Browse the full catalog — prices in ₹ INR</p>
+        </div>
+
+        <div class="shop-controls">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Search projects…">
+            </div>
+            <select class="sort-select" id="sortSelect">
+                <option value="default">Sort: Default</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="name">Name A–Z</option>
+            </select>
+        </div>
+
+        <div class="filters-bar" id="filtersContainer"></div>
+
+        <div class="project-grid" id="projectGrid"></div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact-section reveal-up">
+        <div class="section-header">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-sub">Custom projects, pricing queries, or just say hello</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-links">
+                <a href="https://wa.me/917973862363?text=Hi!%20I%20found%20your%20AutoCAD%20projects." target="_blank"
+                    class="contact-card whatsapp">
+                    <i class="fa-brands fa-whatsapp fa-2x"></i>
+                    <div><strong>WhatsApp</strong>
+                        <p>+91 79738 62363</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="tel:+917973862363" class="contact-card phone">
+                    <i class="fa-solid fa-phone fa-2x"></i>
+                    <div><strong>Call Directly</strong>
+                        <p>+91 79738 62363</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <div class="avail-note">
+                    <i class="fa-solid fa-clock" style="color:var(--gold)"></i>
+                    Available Mon–Sat · 10AM–6PM IST
+                </div>
+            </div>
+            <div class="contact-form-card glass-card">
+                <h3>Send a Message</h3>
+                <form onsubmit="handleContactForm(event)">
+                    <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+                    <div class="form-group"><input type="email" placeholder="Your Email" required></div>
+                    <div class="form-group">
+                        <select>
+                            <option>Select Project Interest</option>
+                            <option>Keyboard Technical Drawing</option>
+                            <option>Custom AutoCAD Project</option>
+                            <option>Other Query</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><textarea rows="4" placeholder="Your message…" required></textarea></div>
+                    <button type="submit" class="btn btn-blue btn-shimmer" style="width:100%">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="faq-section">
+        <div class="section-header reveal-up">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="accordion reveal-up">
+            <div class="faq-item glass-card">
+                <div class="faq-q">What software do I need to open these files? <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-a">Files are in DWG and DXF format — compatible with AutoCAD, AutoCAD LT, DraftSight,
+                    BricsCAD, and most major CAD software. PDF versions are also included.</div>
+            </div>
+            <div class="faq-item glass-card">
+                <div class="faq-q">How do I receive my files after payment? <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-a">After payment, a secure download link is sent to you via WhatsApp or email within
+                    minutes. Files are also accessible in your order dashboard.</div>
+            </div>
+            <div class="faq-item glass-card">
+                <div class="faq-q">Can I edit the AutoCAD files after purchase? <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-a">Yes! All DWG/DXF files are fully editable. Modify dimensions, layers, text, and
+                    geometry as needed.</div>
+            </div>
+            <div class="faq-item glass-card">
+                <div class="faq-q">Can I use these files for commercial projects? <i
+                        class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">Yes, a standard commercial license is included with every purchase. Redistribution or
+                    resale of the source files is not permitted.</div>
+            </div>
+            <div class="faq-item glass-card">
+                <div class="faq-q">Do you offer custom AutoCAD projects? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">Absolutely! Contact us on WhatsApp with your requirements and we'll provide a custom
+                    quote and timeline.</div>
+            </div>
+            <div class="faq-item glass-card">
+                <div class="faq-q">Do you offer refunds on digital products? <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-a">Since these are digital files, refunds are not offered after delivery. However, we
+                    guarantee files match the previews — contact us if there's an issue.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-gold-line"></div>
+        <div class="section-bg-grid"></div>
+        <div class="footer-inner">
+            <div class="footer-brand-col">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-compass-drafting"></i>
+                    CAD Studio<em>PRO</em>
+                </div>
+                <p class="footer-tagline">Precision AutoCAD drawings for the modern engineer.</p>
+            </div>
+            <div class="footer-links-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#featured">Featured Project</a></li>
+                    <li><a href="#catalog">Shop</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact-col">
+                <h4>Contact</h4>
+                <a href="tel:+917973862363"><i class="fa-solid fa-phone"></i> +91 79738 62363</a>
+                <a href="https://wa.me/917973862363" target="_blank"><i class="fa-brands fa-whatsapp"></i> +91 79738
+                    62363</a>
+                <p class="avail-note"><i class="fa-solid fa-clock"></i> Mon–Sat · 10AM–6PM</p>
+            </div>
+            <div class="footer-newsletter-col">
+                <h4>Newsletter</h4>
+                <p>Get notified about new projects and discounts.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="your@email.com">
+                    <button class="btn btn-blue">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 CAD Studio Pro</p>
+        </div>
+    </footer>
+
+    <!-- ===== CART SIDEBAR ===== -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-hdr">
+            <h3>Your Cart</h3>
+            <button class="icon-close" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-body" id="cartItems">
+            <p class="cart-empty">Your cart is currently empty.</p>
+        </div>
+        <div class="coupon-row">
+            <input type="text" id="couponCode" placeholder="Coupon code…">
+            <button class="btn btn-outline-sm" id="applyCoupon">Apply</button>
+        </div>
+        <div class="cart-ftr">
+            <div class="cart-total-row"><span>Total</span><span id="cartTotal">₹0.00</span></div>
+            <button class="btn btn-blue btn-shimmer" style="width:100%" id="checkoutBtn">
+                <i class="fa-solid fa-building-columns"></i> Pay via Razorpay
+            </button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- ===== WHATSAPP FLOAT ===== -->
+    <a href="https://wa.me/917973862363?text=Hi!%20I%20found%20your%20AutoCAD%20projects%20and%20I'm%20interested."
+        class="wa-float" target="_blank" id="waFloat">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- ===== MOBILE STICKY BAR ===== -->
+    <div class="sticky-bar">
+        <a href="https://wa.me/917973862363" target="_blank" class="sticky-wa">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="tel:+917973862363" class="sticky-call">
+            <i class="fa-solid fa-phone"></i> Call Now
+        </a>
+    </div>
+
+    <!-- ===== CONTACT MODAL ===== -->
+    <div class="modal-bg" id="requestModal">
+        <div class="modal-box glass-card">
+            <div class="modal-hdr">
+                <h3>⬇️ Request Full File</h3>
+                <button class="icon-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p style="color:var(--gray); margin-bottom:1.5rem; font-size:0.9rem">We'll send you the full DWG/DXF file
+                after your request is reviewed.</p>
+            <form onsubmit="handleRequestForm(event)">
+                <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+                <div class="form-group"><input type="email" placeholder="Your Email" required></div>
+                <div class="form-group"><input type="text" value="Keyboard Technical Drawing" readonly
+                        style="opacity:0.5"></div>
+                <div class="form-group"><textarea rows="3" placeholder="Any requirements?"></textarea></div>
+                <button type="submit" class="btn btn-green btn-shimmer" style="width:100%">
+                    <i class="fa-brands fa-whatsapp"></i> Send Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <!-- ===== PAYMENT / CHECKOUT MODAL ===== -->
+    <div class="modal-bg" id="paymentModal">
+        <div class="modal-box glass-card" style="max-width:520px; width:100%">
+            <div class="modal-hdr">
+                <h3>💳 Complete Your Payment</h3>
+                <button class="icon-close" onclick="closePaymentModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Step 1: Payer Info -->
+            <div id="payStep1">
+                <p style="color:var(--gray); font-size:0.88rem; margin-bottom:1.5rem">Please fill in your details before
+                    payment. Your project files will be sent to your WhatsApp number.</p>
+                <div class="form-group"><input type="text" id="payerName" placeholder="Your Full Name *" required></div>
+                <div class="form-group"><input type="tel" id="payerPhone"
+                        placeholder="WhatsApp Number (+91XXXXXXXXXX) *" required></div>
+                <div id="payerCartSummary"
+                    style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; padding:1rem; margin-bottom:1rem; font-size:0.9rem;">
+                </div>
+                <div id="discountRow" style="color:var(--green); font-size:0.88rem; margin-bottom:1rem; display:none">✅
+                    Coupon applied — 5% discount!</div>
+                <div
+                    style="display:flex; justify-content:space-between; font-weight:700; font-size:1.1rem; margin-bottom:1.5rem;">
+                    <span>Total to Pay:</span>
+                    <span style="color:var(--gold)" id="payFinalTotal">₹0.00</span>
+                </div>
+                <button class="btn btn-blue btn-shimmer" style="width:100%" onclick="proceedToQR()">
+                    <i class="fa-solid fa-qrcode"></i> Proceed to Pay via UPI
+                </button>
+            </div>
+
+            <!-- Step 2: QR Code -->
+            <div id="payStep2" style="display:none; text-align:center">
+                <div
+                    style="background:white; border-radius:16px; padding:1.5rem; display:inline-block; margin-bottom:1.5rem">
+                    <img src="qr-payment.png" alt="UPI QR Code" style="width:220px; height:auto; display:block">
+                </div>
+                <p style="color:var(--gold); font-weight:700; font-size:1.1rem; margin-bottom:0.5rem">UPI ID:
+                    piyushwalia799@okicici</p>
+                <p style="color:var(--gray); font-size:0.85rem; margin-bottom:1.5rem">Scan the QR code with any UPI app
+                    (GPay, PhonePe, Paytm, etc.) and pay the exact amount.</p>
+                <div
+                    style="background:rgba(0,212,255,0.05); border:1px solid rgba(0,212,255,0.2); border-radius:10px; padding:1rem; margin-bottom:1.5rem; text-align:left">
+                    <p style="font-size:0.82rem; color:var(--gray); margin-bottom:0.5rem">📋 <strong
+                            style="color:white">After payment:</strong></p>
+                    <ul style="font-size:0.82rem; color:var(--gray); padding-left:1.2rem; line-height:1.9">
+                        <li>Your CAD project files (DWG, DXF, PDF) will be shared to your WhatsApp</li>
+                        <li>Step-by-step instructions for each CAD project will also be shared</li>
+                        <li>Delivery within <strong style="color:var(--green)">30–60 minutes</strong> of payment
+                            confirmation</li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="utrInput" placeholder="Enter UTR / Transaction ID (optional)">
+                </div>
+                <button class="btn btn-green btn-shimmer" style="width:100%; margin-bottom:0.75rem"
+                    onclick="confirmPayment()">
+                    <i class="fa-solid fa-circle-check"></i> I've Completed the Payment
+                </button>
+                <button
+                    style="background:none; border:1px solid var(--border); color:var(--gray); padding:0.6rem 1.5rem; border-radius:8px; cursor:pointer; font-family:Inter,sans-serif; font-size:0.85rem; width:100%"
+                    onclick="goBackStep1()">
+                    ← Go Back
+                </button>
+            </div>
+
+            <!-- Step 3: Success -->
+            <div id="payStep3" style="display:none; text-align:center; padding:1rem 0">
+                <div style="font-size:4rem; margin-bottom:1rem">🎉</div>
+                <h3 style="font-size:1.5rem; margin-bottom:0.75rem">Payment Confirmed!</h3>
+                <p style="color:var(--gray); font-size:0.9rem; margin-bottom:1.5rem">Thank you! Your CAD project files
+                    <strong style="color:var(--green)">and step-by-step instructions</strong> will be shared to your
+                    WhatsApp number shortly.
+                </p>
+                <div
+                    style="background:rgba(37,211,102,0.07); border:1px solid rgba(37,211,102,0.25); border-radius:12px; padding:1.2rem; text-align:left; margin-bottom:1.5rem; font-size:0.88rem;">
+                    <div style="margin-bottom:0.4rem">📱 <strong>WhatsApp:</strong> <span id="confirmedPhone"
+                            style="color:var(--green)"></span></div>
+                    <div>⏱️ <strong>Estimated Delivery:</strong> <span style="color:var(--blue)">Within 30–60
+                            minutes</span></div>
+                </div>
+                <a href="https://wa.me/917973862363?text=Hi!%20I've%20completed%20the%20payment%20for%20my%20CAD%20project.%20Please%20share%20the%20files."
+                    target="_blank" class="btn btn-green btn-shimmer" style="width:100%; margin-bottom:0.75rem">
+                    <i class="fa-brands fa-whatsapp"></i> Message on WhatsApp
+                </a>
+                <button class="btn btn-outline" style="width:100%" onclick="closePaymentModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
